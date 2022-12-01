@@ -2,6 +2,7 @@
     --f-color : #32353b;
     --s-color : #d503ffd6;
     --a-color : #32353b;
+    --text-shadow-j : 1px 1px 15px var(--s-color);
 }
 *{
     padding: 0;

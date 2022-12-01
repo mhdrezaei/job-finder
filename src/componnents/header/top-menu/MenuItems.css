@@ -1,9 +1,11 @@
 .menu-item{
     list-style: none;
     margin: 0 10px;
-    padding: 5px;
+    padding: 0 20px;
+    
 }
 .active-menu{
     background-color: #3d3e40;
     border-bottom: 2px solid var(--s-color);
+    text-shadow: var(--text-shadow-j)
 }
