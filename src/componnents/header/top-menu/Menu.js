@@ -2,14 +2,18 @@ import React from "react";
 import MenuItems from "./MenuItems";
 import './Menu.css'
 function Menu() {
-  const items = ["Home", "All jobs", "Add jobs"];
+  const items = [
+    {label : "Home" , link : "/" },
+    {label : "All jobs" , link : "/all-jobs" },
+    {label : "Add job" , link : "/add-job" }
+  ];
   return (
     <div className="col-md-12">
       <div className="container">
         <div className="row justify-content-center ">
           <ul className="menu d-flex justify-content-center ">
             {items.map((item) => (
-              <MenuItems caption={item} />
+              <MenuItems caption={item.label} link={item.link} />
             ))}
           </ul>
         </div>

@@ -1,8 +1,20 @@
 .menu-item{
     list-style: none;
+    
+    
+}
+.menu-item-link{
     margin: 0 10px;
     padding: 0 20px;
-    
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out ;
+}
+.menu-item-link:hover{
+    color: var(--s-color);
+    border-bottom: 1px solid var(--s-color);
+    background-color: var(--f-color);
+
 }
 .active-menu{
     background-color: #3d3e40;
