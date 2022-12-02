@@ -26,14 +26,15 @@ const jobSchema = new mongoose.Schema({
   },
   address : String ,
   industy : {
-    type : [String],
+    type : String,
     required : true,
     enum : {
-        values : ['Business' , 'Banking' , 'Art' , 'others'],
+        values : ['Business' , 'Banking' , 'Art', 'Programing' , 'others'],
         message : "please select option for industry"
     }
   },
-  salary : Number 
+  salary : Number,
+  image : String
 });
 
 jobSchema.pre('save' , function(next){
