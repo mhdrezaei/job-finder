@@ -8,7 +8,7 @@ function TopHeader() {
       <div className="container">
         <div className="row justify-content-between border-bottom p-3">
           <div className="col-md-6">
-            <h1> Job Finder </h1>
+            <h1><span className="j-header">J</span>ob Finder </h1>
           </div>
           <div className="col-md-6">
             <div className="d-flex justify-content-end form-check form-switch">

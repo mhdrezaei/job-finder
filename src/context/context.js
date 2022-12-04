@@ -9,7 +9,7 @@ export const ContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [countJobs, setCountjobs] = useState(0);
 
-    // Loading
+  // Loading
     const isLoading = (status) => {
         setLoading(status);
     }
@@ -18,13 +18,12 @@ export const ContextProvider = ({ children }) => {
   // add new job
 
   const addNewJob = (newJob) => {
+    console.log(newJob)
     const addJob = fetch("http://localhost:5000/api/v1/job/new", {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
       },
       body: JSON.stringify(newJob),
     })

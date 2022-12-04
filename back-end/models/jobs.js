@@ -14,7 +14,7 @@ const jobSchema = new mongoose.Schema({
   slug: String,
   description: {
     type: String,
-    required: [true, "please enter the job title"],
+    required: [true, "please enter the job description"],
     maxLength: [
       200,
       "The length of the description should be less than 200 characters ",
@@ -25,13 +25,10 @@ const jobSchema = new mongoose.Schema({
     validate : [validator.isEmail , "please entyer valid email address"],
   },
   address : String ,
-  industy : {
+  industry : {
     type : String,
     required : true,
-    enum : {
-        values : ['Business' , 'Banking' , 'Art', 'Programing' , 'others'],
-        message : "please select option for industry"
-    }
+    
   },
   salary : Number,
   image : String

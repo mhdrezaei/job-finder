@@ -4,20 +4,41 @@ import Context from "../../../context/context";
 import "./FormJob.css";
 function FormJob() {
   const { loading, isLoading, addNewJob } = useContext(Context);
+  const [image, setImage] = useState({ preview: '', data: '' })
   const [formData, setFormData] = useState({
     title: "",
     email: "",
     address: "",
     industry: "",
     salary: "",
-    selectedFile: "",
+    selectedFile: undefined,
     description: "",
   });
   const { title, email, address, industry, salary, description, selectedFile } =
     formData;
+    const imgFilehandler = (e) => {
+           const img = {
+        preview: URL.createObjectURL(e.target.files[0]),
+        data: e.target.files[0],
+      }
+      setImage(img)
+      setFormData((prevState) => {
+        return {
+          ...prevState,
+          [e.target.id]: img,
+        };
+      });
+    }
   const jobSubmit = (e) => {
     e.preventDefault();
     isLoading(false);
+    let data = new FormData;
+    for ( let key in formData ) {
+      data.append(key, formData[key]);
+  }
+  for (const value of data.values()) {
+    console.log(value);
+  }
 
     if (
       title === "" ||
@@ -33,17 +54,20 @@ function FormJob() {
       isLoading(true);
       return;
     }
+    console.log(formData)
+    console.log(data)
+
      addNewJob(formData);
      isLoading(true);
-     setFormData({
-      title: "",
-      email: "",
-      address: "",
-      industry: "",
-      salary: '',
-      selectedFile: '',
-      description: "",
-    });
+    //  setFormData({
+    //   title: "",
+    //   email: "",
+    //   address: "",
+    //   industry: "",
+    //   salary: '',
+    //   selectedFile: image,
+    //   description: "",
+    // });
 
   };
 
@@ -62,7 +86,7 @@ function FormJob() {
           <div className="jobform">
             <form onSubmit={jobSubmit} className="jobform__form">
               <div className="mb-3">
-                <label htmlFor="industry" className="form-label jobform__label">
+                <label htmlFor="title" className="form-label jobform__label">
                   Job Title :
                 </label>
                 <input
@@ -109,7 +133,6 @@ function FormJob() {
                   className="form-select form-select-lg mb-3"
                   aria-label=".form-select-lg example"
                   onChange={onChange}
-                  defaultValue="Select industry for job"
                   value={industry}
                 >
                   <option value="Art">Art</option>
@@ -137,17 +160,18 @@ function FormJob() {
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="selectedFile" className="form-label">
-                  Select a image :
+                <label htmlFor="selectedFile" className="form-label jobform__label">
+                  Select an image :
                 </label>
                 <input
                   className="form-control form-control-lg"
                   id="selectedFile"
                   type="file"
-                  onChange={onChange}
-                  value={selectedFile}
+                  multiple
+                  onChange={imgFilehandler}
                 />
               </div>
+              {selectedFile && <div className="mb-3"><img src={selectedFile.preview} width="400" height="400"/></div>}
               <div className="mb-3">
                 <label
                   htmlFor="description"
