@@ -8,17 +8,30 @@ export const ContextProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
   const [loading, setLoading] = useState(true);
   const [countJobs, setCountjobs] = useState(0);
+  const [imageUrl, setImageUrl] = useState("");
 
   // Loading
-    const isLoading = (status) => {
-        setLoading(status);
-    }
-
+  const isLoading = (status) => {
+    setLoading(status);
+  };
 
   // add new job
 
-  const addNewJob = (newJob) => {
-    console.log(newJob)
+  const addNewJob = (newJob, image) => {
+    // console.log(newJob)
+    let imgUrl;
+    const res = fetch("http://localhost:5000/upload-file", {
+      method: "POST",
+      body: image,
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        // setImageUrl(JSON.stringify(`${res.img}`));
+        imgUrl = JSON.stringify(res.img);
+      
+    if (imgUrl) {
+      newJob.image = imgUrl;
+    }
     const addJob = fetch("http://localhost:5000/api/v1/job/new", {
       method: "POST",
       mode: "cors",
@@ -38,16 +51,17 @@ export const ContextProvider = ({ children }) => {
         actualData.success
           ? toast.success(actualData.message)
           : toast.error(actualData.message);
-        
       })
       .catch((err) => {
         console.log(err.message);
         toast.error(err);
       });
-      
+    });
   };
   return (
-    <Context.Provider value={{ jobs,loading, countJobs, addNewJob ,isLoading }}>
+    <Context.Provider
+      value={{ jobs, loading, countJobs, addNewJob, isLoading }}
+    >
       {children}
     </Context.Provider>
   );

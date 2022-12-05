@@ -1,5 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+const fileupload = require("express-fileupload")
 
 const app = express();
 const dotenv = require("dotenv");
@@ -8,6 +9,13 @@ const cors = require("cors");
 const databaseConnection = require("./config/databaseConnection");
 const jobs = require("./routes/jobs");
 const errorMiddleware = require("./middlewares/errors");
+const { response } = require("express");
+
+app.use(
+  fileupload({
+      createParentPath: true,
+  }),
+);
 
 const corsOptions = {
   origin: "http://localhost:3000",
@@ -28,6 +36,42 @@ app.use(express.json());
 app.use("/api/v1/", jobs);
 
 app.use(errorMiddleware);
+
+
+
+//upload img 
+app.post("/upload-file", async (req, res) => {
+  try {
+      if (!req.files) {
+          res.send({
+              status: "failed",
+              message: "No file uploaded",
+          });
+      } else {
+          let file = req.files.file;
+
+          console.log(req.files);
+
+          file.mv("./uploads/" + file.name);
+
+          res.send({
+              status: "success",
+              message: "File is uploaded",
+              img : `http://localhost:5000/upload-file/${file.name}`,
+              data: {
+                  name: file.name,
+                  mimetype: file.mimetype,
+                  size: file.size,
+              },
+          });
+      }
+  } catch (err) {
+      res.status(500).send(err);
+  }
+});
+
+
+
 
 const server = app.listen(PORT, () => {
   console.log("server is running");

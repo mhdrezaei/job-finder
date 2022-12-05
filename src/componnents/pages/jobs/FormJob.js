@@ -1,10 +1,13 @@
 import React, { Fragment, useState, useContext } from "react";
 import { toast } from "react-toastify";
 import Context from "../../../context/context";
+import axios from "axios";
 import "./FormJob.css";
+
 function FormJob() {
   const { loading, isLoading, addNewJob } = useContext(Context);
-  const [image, setImage] = useState({ preview: '', data: '' })
+  const [image, setImage] = useState();
+  const [preview, setPreview] = useState();
   const [formData, setFormData] = useState({
     title: "",
     email: "",
@@ -14,31 +17,42 @@ function FormJob() {
     selectedFile: undefined,
     description: "",
   });
+  let data = new FormData();
   const { title, email, address, industry, salary, description, selectedFile } =
     formData;
-    const imgFilehandler = (e) => {
-           const img = {
-        preview: URL.createObjectURL(e.target.files[0]),
-        data: e.target.files[0],
-      }
-      setImage(img)
-      setFormData((prevState) => {
-        return {
-          ...prevState,
-          [e.target.id]: img,
-        };
-      });
-    }
+
+
+
+  const imgFilehandler = async (e) => {
+
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+
+    
+
+
+    setPreview(URL.createObjectURL(e.target.files[0]));
+    setImage(data);
+    ;
+  };
+
+
+
+
+
   const jobSubmit = (e) => {
     e.preventDefault();
     isLoading(false);
-    let data = new FormData;
-    for ( let key in formData ) {
-      data.append(key, formData[key]);
-  }
-  for (const value of data.values()) {
-    console.log(value);
-  }
+   
+    // const json = JSON.stringify(formData);
+    // const blob = new Blob([json], {
+    //   type: "application/json",
+    // });
+    // console.log(blob)
+    // data.append("document", blob);
+    // for (let key in data.values()) {
+    //   console.log(key);
+    // }
 
     if (
       title === "" ||
@@ -46,19 +60,19 @@ function FormJob() {
       email === "" ||
       address === "" ||
       industry === "" ||
-      selectedFile === '' ||
-      salary === '' ||
+      selectedFile === "" ||
+      salary === "" ||
       description === ""
     ) {
       toast.error("All field are necessary!!!");
       isLoading(true);
       return;
     }
-    console.log(formData)
-    console.log(data)
+    
 
-     addNewJob(formData);
-     isLoading(true);
+     addNewJob(formData , image);
+    
+    isLoading(true);
     //  setFormData({
     //   title: "",
     //   email: "",
@@ -68,7 +82,6 @@ function FormJob() {
     //   selectedFile: image,
     //   description: "",
     // });
-
   };
 
   const onChange = (e) => {
@@ -160,7 +173,10 @@ function FormJob() {
                 </div>
               </div>
               <div className="mb-3">
-                <label htmlFor="selectedFile" className="form-label jobform__label">
+                <label
+                  htmlFor="selectedFile"
+                  className="form-label jobform__label"
+                >
                   Select an image :
                 </label>
                 <input
@@ -171,7 +187,11 @@ function FormJob() {
                   onChange={imgFilehandler}
                 />
               </div>
-              {selectedFile && <div className="mb-3"><img src={selectedFile.preview} width="400" height="400"/></div>}
+              {preview && (
+                <div className="mb-3">
+                  <img src={preview} width="400" height="400" />
+                </div>
+              )}
               <div className="mb-3">
                 <label
                   htmlFor="description"
