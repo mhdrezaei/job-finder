@@ -1,0 +1,21 @@
+.job{
+    background-color: var(--f-color);
+    border-radius: 5px;
+    color: #fff;
+    padding: 10px;
+    box-shadow: 1px 1px 12px 3px #a49f9f;
+}
+
+.job__image{
+    max-height: 300px;
+    min-height: 300px;
+    border:1px solid #fff;
+    border-radius: 5px;
+}
+.job__title{
+    padding: 7px;
+
+}
+.job__salary{
+    font-size: 1.5rem;
+}

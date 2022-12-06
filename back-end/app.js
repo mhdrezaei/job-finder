@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const fileupload = require("express-fileupload")
-
+const path = require("path")
 const app = express();
 const dotenv = require("dotenv");
 dotenv.config({ path: "./config/config.env" });
@@ -34,7 +34,9 @@ app.use(express.json());
 
 // all routes
 app.use("/api/v1/", jobs);
-
+app.use(express.static('uploads')); 
+app.use('/uploads', express.static('uploads'));
+ 
 app.use(errorMiddleware);
 
 
@@ -57,7 +59,7 @@ app.post("/upload-file", async (req, res) => {
           res.send({
               status: "success",
               message: "File is uploaded",
-              img : `http://localhost:5000/upload-file/${file.name}`,
+              img : `http://localhost:5000/uploads/${file.name}`,
               data: {
                   name: file.name,
                   mimetype: file.mimetype,

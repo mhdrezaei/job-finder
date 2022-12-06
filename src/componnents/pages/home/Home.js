@@ -1,14 +1,16 @@
 import React from "react";
 import Hero from "../../ui/Hero";
+import AllJobs from "./AllJobs";
 import Search from "./Search";
 
 function Home() {
   return (
-
-        <Hero>
-          <Search />
-        </Hero>
-      
+    <>
+      <Hero>
+        <Search />
+      </Hero>
+      <AllJobs />
+    </>
   );
 }
 

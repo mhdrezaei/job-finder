@@ -4,8 +4,14 @@ const ErrorHandler = require("../utils/errorHandler");
 
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 
-
-
+// get All Jobs => api/v1/alljobs
+exports.getAllJob = catchAsyncErrors(async(req , res , next) => {
+  const jobs = await Job.find();
+  res.status(200).json({
+    success : true , 
+    data : jobs
+  })
+})
 // add new job => api/v1/job/new
 exports.addNewJob = catchAsyncErrors(async (req, res, next) => {
 //   req.body.user = req.user.id;

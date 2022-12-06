@@ -14,9 +14,14 @@ export const ContextProvider = ({ children }) => {
   const isLoading = (status) => {
     setLoading(status);
   };
-
+  // Get All Jobs
+  const getAllJobs = async () => {
+    const jobs = await fetch('http://localhost:5000/api/v1/alljobs');
+    const response = await jobs.json();
+    setJobs(response.data)
+    console.log(response)
+  } 
   // add new job
-
   const addNewJob = (newJob, image) => {
     // console.log(newJob)
     let imgUrl;
@@ -27,7 +32,7 @@ export const ContextProvider = ({ children }) => {
       .then((res) => res.json())
       .then((res) => {
         // setImageUrl(JSON.stringify(`${res.img}`));
-        imgUrl = JSON.stringify(res.img);
+        imgUrl = res.img;
       
     if (imgUrl) {
       newJob.image = imgUrl;
@@ -60,7 +65,7 @@ export const ContextProvider = ({ children }) => {
   };
   return (
     <Context.Provider
-      value={{ jobs, loading, countJobs, addNewJob, isLoading }}
+      value={{ jobs, loading, countJobs, getAllJobs , addNewJob, isLoading }}
     >
       {children}
     </Context.Provider>
