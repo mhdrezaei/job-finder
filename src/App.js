@@ -7,6 +7,7 @@ import Header from "./componnents/header/Header";
 import Home from "./componnents/pages/home/Home";
 import AddJobs from "./componnents/pages/jobs/AddJobs";
 import { ContextProvider } from "./context/context";
+import Footer from "./componnents/footer/Footer";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/add-job" element={<AddJobs />} />
           </Routes>
+        <Footer/>
         </Router>
         <ToastContainer />
       </Fragment>
