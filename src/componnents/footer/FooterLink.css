@@ -1,0 +1,20 @@
+.footer-menu{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    margin-block-end : 0;
+    margin-block-start : 0;
+}
+.footer-menu__item{
+    margin: 13px 10px;
+}
+.footer-menu__link{
+    text-decoration: none;
+    color: var(--s-color);
+    padding: 5px 15px;
+    transition: all 0.4s ease-in-out;
+
+}
+.footer-menu__link:hover{
+    color: #fff;
+}
