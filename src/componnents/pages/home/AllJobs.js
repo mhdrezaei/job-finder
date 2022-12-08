@@ -14,7 +14,7 @@ function AllJobs() {
         <div className="container">
           <div className="row">
             {jobs.map((job) => (
-              <JobItem title={job.title} src={job.image} salary={job.salary} address={job.address} />
+              <JobItem title={job.title} description={job.description} src={job.image} salary={job.salary} address={job.address} />
             ))}
           </div>
         </div>

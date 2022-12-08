@@ -1,5 +1,4 @@
 import React from 'react'
-import './FooterCopyright.css'
 function FooterCopyright() {
   return (
     <div className='copyright' >
