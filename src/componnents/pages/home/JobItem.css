@@ -3,6 +3,10 @@
     border-radius: 5px;
     color: #fff;
     box-shadow: 1px 1px 12px 3px #a49f9f;
+    transition: all 0.3s ease-in-out;
+}
+.job:hover{
+    transform : scale(1.01);
 }
 .job:hover .see-more .btn-modal{
     background-color: var(--s-color);
