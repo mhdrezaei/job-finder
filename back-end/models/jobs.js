@@ -31,7 +31,11 @@ const jobSchema = new mongoose.Schema({
     
   },
   salary : Number,
-  image : String
+  image : String,
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  }
 });
 
 jobSchema.pre('save' , function(next){

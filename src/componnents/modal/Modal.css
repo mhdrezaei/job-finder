@@ -1,0 +1,9 @@
+
+.modal-content{
+    background-color: var(--f-color) !important;
+    color: #fff !important;
+}
+.img-modal{
+    width: 20rem;
+    /* height: 20rem; */
+}

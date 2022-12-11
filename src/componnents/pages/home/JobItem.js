@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import ModalJob from "../../modal/Modal";
 import "./JobItem.css";
 
-function JobItem({ title, src, salary, category, address, description }) {
+function JobItem({ title, src, salary, category, address, date , description }) {
   const [isShow, invokeModal] = React.useState(false);
   const initModal = () => {
     return invokeModal(!isShow);
@@ -40,6 +40,11 @@ function JobItem({ title, src, salary, category, address, description }) {
         initModal={initModal}
         show={isShow}
         title={title}
+        salary={salary}
+        image={src}
+        address={address}
+        category={category}
+        date={date}
         description={description}
       />
     </div>
