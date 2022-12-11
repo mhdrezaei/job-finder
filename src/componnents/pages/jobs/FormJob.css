@@ -7,7 +7,7 @@
 }
 .jobform__label{
     color: var(--s-color);
-    font-size: 1.8rem;
+    font-size: 1.2rem;
 }
 .jobform__btn{
     padding: 5px 35px;
@@ -25,7 +25,7 @@
 }
 
 .form-control{
-    font-size: 1.8rem !important;
+    font-size: 1.2rem !important;
 }
 .form-control:focus{
     border-color: var(--s-color) !important;

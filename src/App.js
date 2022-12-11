@@ -8,6 +8,7 @@ import Home from "./componnents/pages/home/Home";
 import AddJobs from "./componnents/pages/jobs/AddJobs";
 import { ContextProvider } from "./context/context";
 import Footer from "./componnents/footer/Footer";
+import ShowAllJobs from "./componnents/pages/jobs/ShowAllJobs";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/all-jobs" element={<ShowAllJobs />} />
             <Route path="/add-job" element={<AddJobs />} />
           </Routes>
         <Footer/>

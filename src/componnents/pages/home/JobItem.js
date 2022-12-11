@@ -23,8 +23,8 @@ function JobItem({ title, src, salary, category, address, description }) {
             <span className="job__category"> {category} </span>
           </div>
           <div className="job__info">
-            <h3 className="job__title">{title}</h3>
-            <div className="d-flex justify-content-between p-3">
+            <h4 className="job__title">{title}</h4>
+            <div className="d-flex justify-content-between p-1">
               <p className="job__salary">{salary} $</p>
               <p className="job__address">{address}</p>
             </div>

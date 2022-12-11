@@ -11,7 +11,7 @@ function Menu() {
     <div className="col-md-12">
       <div className="container">
         <div className="row justify-content-center ">
-          <ul className="menu d-flex justify-content-center ">
+          <ul className="menu d-flex justify-content-center align-items-center">
             {items.map((item) => (
               <MenuItems caption={item.label} link={item.link} />
             ))}
