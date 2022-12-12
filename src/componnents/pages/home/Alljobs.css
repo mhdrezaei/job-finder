@@ -1,3 +1,12 @@
 .all-jobs{
     margin-top: 5rem;
 }
+.close{
+    color: crimson;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.close:hover{
+    color: red;
+}
