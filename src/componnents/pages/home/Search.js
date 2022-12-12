@@ -6,13 +6,14 @@ import Context from "../../../context/context";
 
 function Search() {
   const [keyword , setKeyword] = useState({keyword : ''})
-  const { isSearching , searchJob } = useContext(Context)
+  const { isSearching , searchJob , isLoading} = useContext(Context)
   const handleSearch = (e) => {
     isSearching(true)
+    isLoading(false)
     setTimeout(() => {
       searchJob({ keyword : e.target.value})
-
-    },1500)
+      isLoading(true)
+    },3000)
   }
   return (
     <div>
