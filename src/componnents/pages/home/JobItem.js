@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
+import Context from "../../../context/context";
 import ModalJob from "../../modal/Modal";
 import "./JobItem.css";
 
 function JobItem({ title, src, salary, category, address, date , description }) {
+  const { dark } = useContext(Context)
   const [isShow, invokeModal] = React.useState(false);
   const initModal = () => {
     return invokeModal(!isShow);
   };
   return (
     <div className="col-4 mb-2">
-      <div className="job">
+      <div className={!dark ? "job light" : "job"} >
         <div className="job-content">
           <div className="job__image-holder">
             <img

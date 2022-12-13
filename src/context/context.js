@@ -6,6 +6,7 @@ const Context = createContext();
 
 export const ContextProvider = ({ children }) => {
   const [jobs, setJobs] = useState([]);
+  const [dark, setDark] = useState(true);
   const [loading, setLoading] = useState(true);
   const [searchResult, setSearchResult] = useState();
   const [countJobs, setCountjobs] = useState(0);
@@ -16,6 +17,10 @@ export const ContextProvider = ({ children }) => {
   const isLoading = (status) => {
     setLoading(status);
   };
+  const isDark = (status) => {
+    setDark(status)
+  }
+  // start serching
   const isSearching = (status) => {
     setSearchStart(status);
   };
@@ -87,11 +92,13 @@ export const ContextProvider = ({ children }) => {
     <Context.Provider
       value={{
         jobs,
+        dark,
         loading,
         countJobs,
         searchStart,
         searchResult,
         searchJob,
+        isDark,
         isSearching,
         getAllJobs,
         addNewJob,
