@@ -5,7 +5,8 @@ import axios from "axios";
 import "./FormJob.css";
 
 function FormJob() {
-  const { loading, isLoading, addNewJob } = useContext(Context);
+
+  const { loading, isLoading, addNewJob , dark } = useContext(Context);
   const [image, setImage] = useState();
   const [preview, setPreview] = useState();
   const [formData, setFormData] = useState({
@@ -96,7 +97,7 @@ function FormJob() {
     <Fragment>
       <div className="col-12">
         <div className="container">
-          <div className="jobform">
+          <div className={!dark ? "jobform light" : "jobform"}>
             <form onSubmit={jobSubmit} className="jobform__form">
               <div className="mb-3">
                 <label htmlFor="title" className="form-label jobform__label">
